@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="{{ url_for('static', filename='icon.ico') }}" type="image/x-icon" />
+  <link rel="stylesheet" href="{% block css %}{% endblock %}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='/css/base.css') }}" />
+  <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+  <script src="{{ url_for('static', filename='jquery-3.6.0.min.js') }}"></script>
+  {% block body %}{% endblock %}
+
+</body>
+
+</html>

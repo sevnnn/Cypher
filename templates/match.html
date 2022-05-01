@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{{ url_for('static', filename='css/match.css') }}
+{% endblock %}
+
+{% block title %}
+{{ info['Map'] }} - {{ info['q'] }}
+{% endblock %}
+
+{% block body %}
+<div id="info">
+    <h2>Map: <b>{{ info['Map'] }}</b></h2>
+    <h2>Queue: <b>{{ info['q'] }}</b></h2>
+    <h2>Server: <b>{{ info['Server'] }}</b></h2>
+</div>
+
+<div id="table_container">
+
+    {% if blue|length > 0 %}
+    <table>
+        <tr>
+            <th colspan="6">Your Team</th>
+        </tr>
+        <tr>
+            <th>Agent</th>
+            <th>Username</th>
+            <th>Level</th>
+            <th>Rank</th>
+            <th>Peek Rank</th>
+            <th>Winrate</th>
+        </tr>
+        {% for player in blue %}
+        <tr>
+            <td><img src="https://media.valorant-api.com/agents/{{ player['Agent'] }}/displayicon.png"
+                    alt="{{ c.agents[player['Agent']] }}" title="{{ c.agents[player['Agent']] }}" class="agent" />
+            </td>
+            <td>{{ player['Username'] }}</td>
+            <td>{{ player['Level'] }}</td>
+            <td>
+                <img src="{{ player['RankImage'] }}" alt="{{ player['Rank'] }}" title="{{ player['Rank'] }}"
+                    class="rank" />
+                <p>{{ player['RR'] }} RR</p>
+            </td>
+            <td><img src="{{ player['PeekImage'] }}" alt="{{ player['Peek'] }}" title="{{ player['Peek'] }}"
+                    class="peek" />
+            </td>
+            <td>
+                <p {% if player['Winrate']> 50 %} class="pos" {% else %} class="neg" {% endif %}>{{ player['Winrate']
+                    }}%
+                </p><br />
+                <p>({{ player['GamesPlayed'] }} Games)</p>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    {% if red|length > 0 %}
+    <table>
+        <tr>
+            <th colspan="6">Enemy Team</th>
+        </tr>
+        <tr>
+            <th>Agent</th>
+            <th>Username</th>
+            <th>Level</th>
+            <th>Rank</th>
+            <th>Peek Rank</th>
+            <th>Winrate</th>
+        </tr>
+        {% for player in red %}
+        <tr>
+            <td><img src="https://media.valorant-api.com/agents/{{ player['Agent'] }}/displayicon.png"
+                    alt="{{ c.agents[player['Agent']] }}" title="{{ c.agents[player['Agent']] }}" class="agent" />
+            </td>
+            <td>{{ player['Username'] }}</td>
+            <td>{{ player['Level'] }}</td>
+            <td>
+                <img src="{{ player['RankImage'] }}" alt="{{ player['Rank'] }}" title="{{ player['Rank'] }}"
+                    class="rank" />
+                <p>{{ player['RR'] }} RR</p>
+            </td>
+            <td><img src="{{ player['PeekImage'] }}" alt="{{ player['Peek'] }}" title="{{ player['Peek'] }}"
+                    class="peek" />
+            </td>
+            <td>
+                <p {% if player['Winrate']> 50 %} class="pos" {% else %} class="neg" {% endif %}>{{ player['Winrate']
+                    }}%
+                </p><br />
+                <p>({{ player['GamesPlayed'] }} Games)</p>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+</div>
+
+<script>
+
+    function check() {
+        $.ajax({
+            url: "/check_match",
+            success: function (data) {
+                if (data == "0") {
+                    window.location.replace(location.protocol + '//' + location.host);
+                    clearInterval(interval)
+                }
+            }
+        })
+    }
+    var interval = setInterval(check, 5000)
+
+</script>
+
+<style>
+    body {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("{{ info['MapImage'] }}");
+        /* {% if blue|length > 5 %} */
+        overflow: auto;
+        /* {% endif %} */
+    }
+</style>
+
+{% endblock %}

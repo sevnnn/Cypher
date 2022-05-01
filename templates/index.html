@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{{ url_for('static', filename='css/index.css') }}
+{% endblock %}
+
+{% block title %}
+Waiting for game
+{% endblock %}
+
+{% block body %}
+<h1>Waiting for game to start</h1>
+
+<script>
+
+    function check() {
+        $.ajax({
+            url: "/check_match",
+            success: function (data) {
+                if (data != "0") {
+                    window.location.replace(window.location.href + "match/" + data);
+                    clearInterval(interval)
+                }
+            }
+        })
+    }
+    var interval = setInterval(check, 5000)
+
+</script>
+{% endblock %}

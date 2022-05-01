@@ -1,0 +1,57 @@
+body {
+  background-position: center;
+  background-size: cover;
+}
+
+table,
+tr,
+th,
+td {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 2px solid gray;
+  border-collapse: collapse;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  font-size: 18px;
+}
+
+p,
+h2 {
+  margin: 0;
+}
+
+#table_container {
+  display: flex;
+  justify-content: space-around;
+}
+
+#info {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  display: flex;
+  justify-content: space-around;
+}
+
+#info h2 {
+  font-weight: 300;
+}
+
+.agent,
+.peek {
+  max-width: 110px;
+}
+
+.rank {
+  max-width: 85px;
+}
+
+.pos {
+  color: lightgreen;
+}
+
+.neg {
+  color: lightcoral;
+}
