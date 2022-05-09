@@ -7,6 +7,7 @@ from base64 import b64encode
 
 class Cypher:
     _VERSION = "1.0"
+    _MATCHING_VER = True
 
     # global vars
     lockfile = []
@@ -23,7 +24,9 @@ class Cypher:
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
         # cheking for update
-        # will implement later
+        r = requests.get("https://raw.githubusercontent.com/sevnnn/Cypher/main/VERSION")
+        if r.text != self._VERSION:
+            self._MATCHING_VER = False
 
         # getting lockfile
         path = os.getenv("localappdata") + "\\Riot Games\\Riot Client\\Config\\lockfile"
@@ -173,8 +176,8 @@ class Cypher:
             peak = 0
             try:
                 for season in comp_short:
-                    if comp_short[season]["Rank"] > peak:
-                        peak = comp_short[season]["Rank"]
+                    if comp_short[season]["CompetitiveTier"] > peak:
+                        peak = comp_short[season]["CompetitiveTier"]
             except:
                 pass
 

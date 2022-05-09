@@ -9,7 +9,15 @@ Waiting for game
 {% endblock %}
 
 {% block body %}
-<h1>Waiting for game to start</h1>
+<h1>
+    Waiting for game to start
+    {% if c._MATCHING_VER == False %}
+    <br />
+    <a href="https://github.com/sevnnn/Cypher" target="_BLANK">Update is available, download here</a>
+    {% endif %}
+</h1>
+
+
 
 <script>
 

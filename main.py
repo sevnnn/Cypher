@@ -13,11 +13,14 @@ def index():
 @f.route("/check_match")
 def check_match():
     body, sc = c.api_get("glz", f"/core-game/v1/players/{c.puuid}")
+    print(body)
+    print(sc)
     if sc == 200:
         return body["MatchID"]
-    else:
-        print(sc)
-        return "0"
+    elif sc == 400:
+        c._regen_token()
+        print("regenerating token")
+    return "0"
 
 
 @f.route("/match/<string:match_id>")
