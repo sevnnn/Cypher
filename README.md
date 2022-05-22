@@ -18,8 +18,12 @@ After that you can simply execute this command to start the program:
 
 ## Showcase
 
+![https://raw.githubusercontent.com/sevnnn/Cypher/main/showcase/example.jpg](showcase)
+
 ## Roadmap
 
-- Add ability to share current match via Discord Webhook
-- Show latest played game (with **Cypher** running) info
-- Downloading all the needed assets like Agent portraits and backgrounds to decrease image loading issuse
+### **Due to crashing issues with the game, and the overall direction the game is heading - I have quit VALORANT for now**
+
+- ~~Add ability to share current match via Discord Webhook~~
+- ~~Show latest played game (with **Cypher** running) info~~
+- ~~Downloading all the needed assets like Agent portraits and backgrounds to decrease image loading issuse~~

@@ -1,8 +1,13 @@
+import os
+import logging
 from flask import Flask, render_template
 from cypher import Cypher
 
 c = Cypher()
 f = Flask(__name__)
+
+log = logging.getLogger("werkzeug")
+log.disabled = True
 
 
 @f.route("/")
@@ -13,8 +18,6 @@ def index():
 @f.route("/check_match")
 def check_match():
     body, sc = c.api_get("glz", f"/core-game/v1/players/{c.puuid}")
-    print(body)
-    print(sc)
     if sc == 200:
         return body["MatchID"]
     elif sc == 400:
@@ -31,8 +34,8 @@ def match(match_id):
 
 
 if __name__ == "__main__":
-    # os.system("start http://localhost:5000")
+    os.system("start http://localhost:5000")
     print(
         "Open http://localhost:5000 in your browser if it wasn't opened automatically"
     )
-    f.run(debug=True)
+    f.run()
