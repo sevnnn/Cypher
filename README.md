@@ -18,7 +18,7 @@ After that you can simply execute this command to start the program:
 
 ## Showcase
 
-![https://raw.githubusercontent.com/sevnnn/Cypher/main/showcase/example.jpg](showcase)
+![https://raw.githubusercontent.com/sevnnn/Cypher/main/showcase/example.jpg](https://raw.githubusercontent.com/sevnnn/Cypher/main/showcase/example.jpg)
 
 ## Roadmap
 
